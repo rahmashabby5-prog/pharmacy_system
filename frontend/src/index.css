@@ -1,0 +1,192 @@
+/* Import Bootstrap Core Styles */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  /* HSL Color System */
+  --primary-h: 162;
+  --primary-s: 79%;
+  --primary-l: 40%;
+  --primary: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
+  --primary-hover: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) - 8%));
+  
+  --secondary: #0ea5e9;
+  
+  /* Charcoal Slate Grays */
+  --bg-dark: #090d16;
+  --card-dark: #121824;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: #1e293b;
+  
+  /* State Accents */
+  --danger: #f43f5e;
+  --warning: #f59e0b;
+  --success: #10b981;
+  --info: #0ea5e9;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Styles */
+.premium-card {
+  background: var(--card-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.22s ease;
+}
+
+.premium-card:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Micro-animated Buttons */
+.btn-premium-primary {
+  background: linear-gradient(135deg, var(--primary), #10b981);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.btn-premium-primary:hover {
+  background: linear-gradient(135deg, var(--primary-hover), #059669);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+
+.btn-premium-secondary {
+  background: #1e293b;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-premium-secondary:hover {
+  background: #334155;
+  color: #ffffff;
+}
+
+/* Dashboard Metric Cards */
+.metric-card-green {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(18, 24, 36, 0.5) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.metric-card-orange {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(18, 24, 36, 0.5) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.metric-card-red {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.08) 0%, rgba(18, 24, 36, 0.5) 100%);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+}
+.metric-card-blue {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(18, 24, 36, 0.5) 100%);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+/* Sidebar Custom Layout */
+.sidebar {
+  background-color: #05070c;
+  border-right: 1px solid var(--border-color);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding-top: 24px;
+}
+
+.sidebar-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 10px;
+  margin: 6px 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  color: var(--text-primary);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+.sidebar-link.active {
+  color: #ffffff;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-left: 4px solid var(--primary);
+  font-weight: 600;
+}
+
+/* Tables Styling */
+.table-premium {
+  color: var(--text-primary) !important;
+}
+.table-premium th {
+  background-color: #0c111c !important;
+  color: var(--text-secondary) !important;
+  border-bottom: 2px solid var(--border-color) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  padding: 14px 16px;
+}
+.table-premium td {
+  background-color: var(--card-dark) !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+.table-premium tbody tr:hover td {
+  background-color: #172030 !important;
+}
+
+/* Custom form control design override */
+.form-premium {
+  background-color: #0c111c !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  border-radius: 8px !important;
+  padding: 10px 14px;
+}
+.form-premium:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
+  outline: none;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
