@@ -1,0 +1,31 @@
+services:
+  # Backend Web Service
+  - type: web
+    name: pharmacy-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: gunicorn pharmacy_pms.wsgi:application
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "*"
+      - key: CORS_ALLOW_ALL_ORIGINS
+        value: "True"
+      - key: DATABASE_URL
+        sync: false # You can link your MySQL or database URL in the Render dashboard environment setting.
+
+  # Frontend Static Site
+  - type: web
+    name: pharmacy-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: pharmacy-backend
+          type: web
+          property: url

@@ -1,7 +1,14 @@
 import axios from 'axios';
 
 // In production, this would be an environment variable.
-const API_BASE_URL = 'http://127.0.0.1:8000/api/';
+let baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api/';
+if (baseUrl && !baseUrl.endsWith('/')) {
+  baseUrl += '/';
+}
+if (baseUrl && !baseUrl.includes('/api/')) {
+  baseUrl += 'api/';
+}
+const API_BASE_URL = baseUrl;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
