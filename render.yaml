@@ -5,7 +5,7 @@ services:
     env: python
     rootDir: backend
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: python manage.py migrate && gunicorn pharmacy_pms.wsgi:application
+    startCommand: python manage.py migrate && python create_superuser.py && gunicorn pharmacy_pms.wsgi:application
     envVars:
       - key: DEBUG
         value: "False"
@@ -17,6 +17,12 @@ services:
         generateValue: true
       - key: DATABASE_URL
         sync: false # Link your MySQL or database URL in the Render dashboard environment setting.
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: "admin"
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: "admin@example.com"
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false # Set your desired admin password in the Render dashboard.
 
   # Frontend Static Site
   - type: web
