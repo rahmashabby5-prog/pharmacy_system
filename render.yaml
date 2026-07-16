@@ -33,7 +33,4 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: pharmacy-backend
-          type: web
-          property: url
+        sync: false # Enter your deployed backend URL in the Render dashboard (e.g., https://pharmacy-backend-xxx.onrender.com)
