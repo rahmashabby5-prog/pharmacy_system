@@ -5,7 +5,7 @@ services:
     env: python
     rootDir: backend
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: gunicorn pharmacy_pms.wsgi:application
+    startCommand: python manage.py migrate && gunicorn pharmacy_pms.wsgi:application
     envVars:
       - key: DEBUG
         value: "False"
@@ -13,8 +13,10 @@ services:
         value: "*"
       - key: CORS_ALLOW_ALL_ORIGINS
         value: "True"
+      - key: SECRET_KEY
+        generateValue: true
       - key: DATABASE_URL
-        sync: false # You can link your MySQL or database URL in the Render dashboard environment setting.
+        sync: false # Link your MySQL or database URL in the Render dashboard environment setting.
 
   # Frontend Static Site
   - type: web

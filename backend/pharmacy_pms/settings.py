@@ -81,6 +81,15 @@ DATABASES = {
 if os.environ.get('DATABASE_URL'):
     db_from_env = dj_database_url.config(conn_max_age=600)
     DATABASES['default'].update(db_from_env)
+    
+    # Cloud MySQL databases (like Aiven) require SSL.
+    # Enable SSL if host is not localhost.
+    db_host = DATABASES['default'].get('HOST', '')
+    if db_host and db_host not in ('127.0.0.1', 'localhost'):
+        DATABASES['default']['OPTIONS'] = {
+            'ssl': {},
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
