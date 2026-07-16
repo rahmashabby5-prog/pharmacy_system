@@ -25,9 +25,8 @@ services:
         sync: false # Set your desired admin password in the Render dashboard.
 
   # Frontend Static Site
-  - type: web
+  - type: static
     name: pharmacy-frontend
-    env: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     publishDir: dist
